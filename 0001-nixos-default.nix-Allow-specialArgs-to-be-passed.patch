@@ -1,0 +1,40 @@
+From 96acd099e1645908c2dded2a4adc14e065553387 Mon Sep 17 00:00:00 2001
+From: Ben Edwards <ben@artfuldodge.io>
+Date: Thu, 11 Sep 2025 20:16:54 +0100
+Subject: [PATCH] nixos/default.nix: Allow specialArgs to be passed
+
+To allow plain nixos configrations the same power as flakes, we must
+expose specialArgs, otherwise a classic pattern importing all of ones
+"inputs" (i.e. npins sources), and then exposing them to the module
+system becomes impossible due to the fact that imports must be
+statically resolvable so these sources cannot be passed in the existing
+entry point using _module.args if the sources themselves have modules to
+be imported.
+---
+ nixos/default.nix | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/nixos/default.nix b/nixos/default.nix
+index f338e13fadb0..f87dd9a93365 100644
+--- a/nixos/default.nix
++++ b/nixos/default.nix
+@@ -1,12 +1,15 @@
+ {
+   configuration ? import ./lib/from-env.nix "NIXOS_CONFIG" <nixos-config>,
+   system ? builtins.currentSystem,
++  # This should only be used for special arguments that need to be evaluated when resolving module structure (like in imports).
++  # For everything else, there's _module.args.
++  specialArgs ? { },
+ }:
+ 
+ let
+ 
+   eval = import ./lib/eval-config.nix {
+-    inherit system;
++    inherit system specialArgs;
+     modules = [ configuration ];
+   };
+ 
+-- 
+2.50.1
+

@@ -1,0 +1,24 @@
+{
+  "pins": {
+    "nix-index-database": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nix-index-database"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "15c5451c63f4c612874a43846bfe3fa828b03eee",
+      "url": "https://github.com/nix-community/nix-index-database/archive/15c5451c63f4c612874a43846bfe3fa828b03eee.tar.gz",
+      "hash": "0kxvxxlv94xabv229c1zkhnmrggcyb012y3sk9xlbcvjgl5pbl8b"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-25.05",
+      "url": "https://releases.nixos.org/nixos/25.05/nixos-25.05.812554.6faeb062ee4c/nixexprs.tar.xz",
+      "hash": "0rj2xz1ppwncsfby149k14rn3xy9pyxnvpli6plcg7b04naqz1v8"
+    }
+  },
+  "version": 5
+}
