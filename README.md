@@ -1,3 +1,7 @@
+# Explanation
+
+Minimal non-trivial example to look at importing a third party module using npins + specialArgs.
+
 # Eval
 
 ```
